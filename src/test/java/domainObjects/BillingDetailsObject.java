@@ -11,7 +11,10 @@ public class BillingDetailsObject {
     private String zip;
     private String email;
 
-    public BillingDetailsObject(String firstname, String lastname, String country, String street, String town, String state, String zip, String email) {
+    public BillingDetailsObject(String firstname, String lastname,
+                                String country, String street,
+                                String town, String state,
+                                String zip, String email) {
 
         this.firstname = firstname;
         this.lastname = lastname;

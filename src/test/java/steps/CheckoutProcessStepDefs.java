@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import pages.CheckoutPage;
 import pages.StorePage;
 
+import static org.testng.Assert.*;
+
 public class CheckoutProcessStepDefs {
     private WebDriver driver;
     private StorePage storePage;
@@ -17,11 +19,12 @@ public class CheckoutProcessStepDefs {
     private BillingDetailsObject billingDetails;
 
 
-        @Given("the customer has a product in the cart")
+        @Given("the customer has products in the cart")
         public void customerHasProductInCart (){
-            driver = DriverFactory.setUpDriver();
+            driver = DriverFactory.getDriver();
             storePage = new StorePage(driver);
             storePage.load("https://askomdch.com/store/");
+
             storePage.addProductToCart("Basic Blue Jeans");
             storePage.addProductToCart("Dark Brown Jeans");
             storePage.addProductToCart("Blue Tshirt");
@@ -49,6 +52,7 @@ public class CheckoutProcessStepDefs {
 
         @Then("the order should be placed successfully")
         public void orderIsPlacedSuccessfully (){
-
+            String result = checkoutPage.placedOrderSuccessMessage();
+            assertEquals(result,"Thank you. Your order has been received.", "Successful order message unavailable.");
         }
 }

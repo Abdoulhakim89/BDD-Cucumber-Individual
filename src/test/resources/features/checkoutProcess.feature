@@ -5,7 +5,7 @@ Feature: Place order
 
 @checkoutProcess
   Scenario: Guest user places order using valid billing details
-    Given the customer has a product in the cart
+    Given the customer has products in the cart
     And the guest customer is on the checkout page
     And the customer's billing details are
       | firstname | lastname | country | street_address | town   | state  | zip   | email              |

@@ -1,9 +1,8 @@
 package pages;
 
 import domainObjects.BillingDetailsObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class CheckoutPage extends BasePage{
@@ -16,6 +15,7 @@ public class CheckoutPage extends BasePage{
     private By billingZip = By.id("billing_postcode");
     private By billingEmail = By.id("billing_email");
     private By placeOrderButton = By.id("place_order");
+    private By orderSuccessMessage = By.xpath("//*[@id=\"post-1221\"]/div/div/div/div/div/p");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -38,7 +38,17 @@ public class CheckoutPage extends BasePage{
 
     }
     public void placeOrder(){
-
+//        wait.until(ExpectedConditions.refreshed(
+//                ExpectedConditions.elementToBeClickable(placeOrderButton)
+//        )).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(placeOrderButton));
+        ((JavascriptExecutor) driver).executeScript(
+                "document.getElementById('place_order').click();"
+        );
+    }
+    public String placedOrderSuccessMessage(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(orderSuccessMessage));
+        return driver.findElement(orderSuccessMessage).getText();
     }
 
 }

@@ -18,20 +18,26 @@ public class AddToCartStepDefs {
     @Given("the customer is on the Store page")
     public void theCustomerIsOnTheStorePage() {
         driver = DriverFactory.getDriver();
-        new StorePage(driver).load("https://askomdch.com/store/");
+        store = new StorePage(driver);
+        store.load("https://askomdch.com/store/");
     }
 
-    @When("the customer adds {string}")
+    @When("the customer adds {string} to the cart")
     public void theCustomerAdds(String product) {
-        store = new StorePage(driver);
         store.addProductToCart(product);
-
     }
 
     @Then("the customer should see {int} {string} in the cart")
     public void theCustomerShouldSeeInTheCart(int quantity, String product) {
         CartPage cart = store.viewCartPage();
         assertTrue(cart.getProductName(product).contains(product));
-        assertTrue(cart.getProductQuantity()==quantity);
+        assertEquals(cart.getProductQuantity(),quantity);
+    }
+
+    @When("the customer adds {int} {string} to the cart")
+    public void moreThanOneProductsAdded(int qty, String productName){
+        for(int i=1;i<= qty;i++){
+            store.addProductToCart(productName);
+        }
     }
 }

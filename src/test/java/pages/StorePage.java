@@ -9,8 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class StorePage extends BasePage{
 
     private By addToCartButton = By.xpath(".//a[contains(text(),'Add to cart')]");
-    private By viewCartLink = By.cssSelector(".added_to_cart ");
-    private By qtyInput = By.cssSelector(".qty");
+    private By viewCartLink = By.className("added_to_cart");
     private WebElement currentProductToAdd;
 
     public StorePage(WebDriver driver) {
@@ -21,10 +20,12 @@ public class StorePage extends BasePage{
          wait.until(ExpectedConditions.elementToBeClickable((By.xpath(".//li[.//h2[contains(text(),\""+productName+"\")]]"))));
          currentProductToAdd =driver.findElement(By.xpath(".//li[.//h2[contains(text(),\""+productName+"\")]]"));
          currentProductToAdd.findElement(addToCartButton).click();
+
+         wait.until(ExpectedConditions.visibilityOfElementLocated(viewCartLink));
      }
      public CartPage viewCartPage(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(viewCartLink));
-         currentProductToAdd.findElement(viewCartLink).click();
+         driver.findElement(viewCartLink).click();
          return new CartPage(driver);
      }
 

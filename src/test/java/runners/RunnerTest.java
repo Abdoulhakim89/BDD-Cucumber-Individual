@@ -6,8 +6,8 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = {"steps","hooks"},
-        tags = "@checkoutProcess",
+        glue = {"steps","hooks","customerTypes"},
+        tags = "@AddMoreThanOneProduct",
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports.html",
