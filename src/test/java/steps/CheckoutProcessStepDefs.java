@@ -20,7 +20,7 @@ public class CheckoutProcessStepDefs {
     private BillingDetailsObject billingDetails;
 
 
-        @Given("the customer has products in the cart")
+        @Given("the customer has more than one product in the cart")
         public void customerHasProductInCart (){
             driver = DriverFactory.getDriver();
             storePage = PageFactoryManager.getStorePage(driver);
