@@ -28,6 +28,10 @@ public class StorePage extends BasePage{
          driver.findElement(viewCartLink).click();
          return new CartPage(driver);
      }
+     public ProductDetailsPage viewProductDetails(String productName){
+         driver.findElement(By.xpath(".//li[.//h2[contains(text(),\""+productName+"\")]]")).click();
+         return new ProductDetailsPage(driver);
+     }
 
 
 

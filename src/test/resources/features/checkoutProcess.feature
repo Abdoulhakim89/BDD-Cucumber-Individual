@@ -1,3 +1,4 @@
+@All @CheckoutProcess
 Feature: Place order
   As a guest customer,
   I want to place an order

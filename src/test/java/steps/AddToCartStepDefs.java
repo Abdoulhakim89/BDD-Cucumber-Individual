@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import static org.testng.Assert.*;
 
 import pages.CartPage;
+import pages.PageFactoryManager;
 import pages.StorePage;
 
 public class AddToCartStepDefs {
@@ -18,7 +19,7 @@ public class AddToCartStepDefs {
     @Given("the customer is on the Store page")
     public void theCustomerIsOnTheStorePage() {
         driver = DriverFactory.getDriver();
-        store = new StorePage(driver);
+        store = PageFactoryManager.getStorePage(driver);
         store.load("https://askomdch.com/store/");
     }
 

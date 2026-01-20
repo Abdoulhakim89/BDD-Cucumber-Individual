@@ -1,4 +1,4 @@
-@AddToCart
+@All @AddToCart
 Feature: Add to cart
 Background:
   Given the customer is on the Store page

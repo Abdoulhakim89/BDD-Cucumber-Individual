@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.CheckoutPage;
+import pages.PageFactoryManager;
 import pages.StorePage;
 
 import static org.testng.Assert.*;
@@ -22,7 +23,7 @@ public class CheckoutProcessStepDefs {
         @Given("the customer has products in the cart")
         public void customerHasProductInCart (){
             driver = DriverFactory.getDriver();
-            storePage = new StorePage(driver);
+            storePage = PageFactoryManager.getStorePage(driver);
             storePage.load("https://askomdch.com/store/");
 
             storePage.addProductToCart("Basic Blue Jeans");

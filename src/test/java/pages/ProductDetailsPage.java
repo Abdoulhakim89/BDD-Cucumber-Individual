@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class ProductDetailsPage extends BasePage{
@@ -20,6 +21,9 @@ public class ProductDetailsPage extends BasePage{
         driver.findElement(viewCartButton).click();
     }
     public void addProductToCart(int qty){
-        driver.findElement(qtyField).sendKeys(String.valueOf(qty));
+        var qtyFieldElement = driver.findElement(qtyField);
+        qtyFieldElement.sendKeys(Keys.CONTROL + "A"+Keys.BACK_SPACE);
+        qtyFieldElement.sendKeys(String.valueOf(qty));
+        driver.findElement(addToCartButton).click();
     }
 }
