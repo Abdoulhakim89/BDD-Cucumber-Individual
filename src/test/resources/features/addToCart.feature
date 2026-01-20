@@ -1,5 +1,9 @@
 @All @AddToCart
 Feature: Add to cart
+  As a customer
+  I want to add a product to the cart from the store page
+  So that I can shop different items of different quantities
+
 Background:
   Given the customer is on the Store page
 
