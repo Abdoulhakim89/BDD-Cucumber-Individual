@@ -26,5 +26,4 @@ Background:
       | "Anchor Bracelet"  |
       | "Blue Shoes"       |
       | "Blue Tshirt"      |
-      | "Basic Blue Jeans" |
 
