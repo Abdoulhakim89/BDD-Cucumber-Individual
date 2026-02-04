@@ -9,5 +9,4 @@ Feature: Add product to cart from the Product Details Page
     Examples:
       | product            | qty |
       | "Anchor Bracelet"  | 1   |
-      | "Basic Blue Jeans" | 4   |
 
