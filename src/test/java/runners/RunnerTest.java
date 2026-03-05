@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"steps","hooks","customerTypes/"},
-        tags = "@checkoutProcess",
+        tags = "@All",
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports.html",
@@ -17,9 +17,9 @@ import org.testng.annotations.DataProvider;
 )
 
 public class RunnerTest extends AbstractTestNGCucumberTests {
-    @DataProvider(parallel = true)
-    @Override
-    public Object[][] scenarios(){
-        return super.scenarios();
-    }
+//    @DataProvider(parallel = true)
+//    @Override
+//    public Object[][] scenarios(){
+//        return super.scenarios();
+//    }
 }
