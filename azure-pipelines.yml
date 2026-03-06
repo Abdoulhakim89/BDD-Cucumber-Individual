@@ -42,8 +42,14 @@ stages:
   jobs:
     - job: run_unit_tests
       steps:
-        - script: mvn clean test
-        - script: echo "Testing complete"
+        - task: JavaToolInstaller@1
+          inputs:
+            versionSpec: '21'
+            jdkArchitectureOption: 'x64'
+            jdkSourceOption: 'PreInstalled'
+        - task: CmdLine@2
+          inputs:
+            script: 'mvn clean test'
 
 - stage: Production
   dependsOn: Testing
