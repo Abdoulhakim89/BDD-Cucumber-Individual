@@ -9,17 +9,46 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: JavaToolInstaller@1
-  inputs:
-    versionSpec: '21'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-- task: CmdLine@2
-  inputs:
-    script: 'mvn clean test'
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
-    includeRootFolder: false
-- task: PublishBuildArtifacts@1
+stages:
+
+- stage: Build
+  jobs:
+  - job: build_job
+    steps:
+    - task: JavaToolInstaller@1
+      inputs:
+        versionSpec: '21'
+        jdkArchitectureOption: 'x64'
+        jdkSourceOption: 'PreInstalled'
+    - task: CmdLine@2
+      inputs:
+        script: 'mvn clean test'
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(build.sourcesDirectory)'
+        includeRootFolder: false
+    - task: PublishBuildArtifacts@1
+
+- stage: Development
+  dependsOn: Build
+  jobs:
+    - job: develop
+      steps:
+        - script: echo "Development in progress..."
+        - script: echo "development done!"
+
+- stage: Testing
+  dependsOn: Development
+  jobs:
+    - job: run_unit_tests
+      steps:
+        - script: mvn clean test
+        - script: echo "Testing complete"
+
+- stage: Production
+  dependsOn: Testing
+  jobs:
+    - job: run_production
+      steps:
+        - script: echo "Production underway..."
+        - script: echo "Production done! Ready for release."
